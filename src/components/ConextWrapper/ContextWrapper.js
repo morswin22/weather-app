@@ -6,6 +6,7 @@ export default props => {
 
     function toggleDarkMode() {
         setDarkMode(darkMode => !darkMode);
+        document.body.style.backgroundColor = 'black';
     }
     return (
         <DarkModeContext.Provider value={{ darkMode, toggleDarkMode }}>
