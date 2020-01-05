@@ -6,7 +6,7 @@ export default  () => {
 
     return (
         <button onClick={toggleDarkMode}>
-            click for {darkMode ? "light mode" : "dark mode"};
+            click for {darkMode ? "light mode" : "dark mode"}
         </button>
     )
 }

@@ -5,9 +5,10 @@ export default props => {
     const [darkMode, setDarkMode] = useState(false);
 
     function toggleDarkMode() {
+        document.body.style.backgroundColor = darkMode ? 'white' : 'black';
         setDarkMode(darkMode => !darkMode);
-        document.body.style.backgroundColor = 'black';
     }
+
     return (
         <DarkModeContext.Provider value={{ darkMode, toggleDarkMode }}>
             {props.children}
