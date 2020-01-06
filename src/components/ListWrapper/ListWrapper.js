@@ -22,7 +22,7 @@ class ListWrapper extends React.Component {
    };
 
    componentDidMount() { 
-      axios.get('https://api.openweathermap.org/data/2.5/forecast?q=London&units=metric&appid=' + API_KEY)
+      axios.get('https://api.openweathermap.org/data/2.5/forecast?q=Poznan&units=metric&appid=' + API_KEY)
          .then(res => {
             const days = {};
 
@@ -33,7 +33,7 @@ class ListWrapper extends React.Component {
                const day = date.getDate();
                const name = weekdays[date.getDay() - 1];
 
-               if (!days[day]) days[day] = {name, len: 0}
+               if (!days[day]) days[day] = {name, len: 0};
 
                days[day][hour] = {
                   temp: Math.round((hourData.main.temp_min+hourData.main.temp_max)),
