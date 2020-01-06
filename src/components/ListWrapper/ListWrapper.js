@@ -39,7 +39,7 @@ class ListWrapper extends React.Component {
 
                const hour = date.getHours();
                const day = date.getDate();
-               const name = weekdays[date.getDay()];
+               const name = weekdays[date.getDay()-1];
 
                if (!days[day]) days[day] = {name, len: 0}
                days[day][hour] = {
