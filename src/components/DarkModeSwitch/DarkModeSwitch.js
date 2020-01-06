@@ -27,8 +27,6 @@ const Button = styled.button`
 export default  () => {
     const {darkMode,  toggleDarkMode } = useContext(DarkModeContext);
 
-    console.log(darkMode);
-
     return (
         <Button onClick={toggleDarkMode}>
             {darkMode ? "🌝" : "🌚"}
