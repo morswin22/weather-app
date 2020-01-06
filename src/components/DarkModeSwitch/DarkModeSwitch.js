@@ -16,6 +16,11 @@ const Button = styled.button`
    
    &:focus {}
     outline: none;
+    
+   @media (max-width: 500px) {
+     font-size: 4rem;
+     right: 50px;
+   }
 `;
 
 

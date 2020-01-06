@@ -5,6 +5,7 @@ import { DarkModeContext } from "../../hooks/DarkModeContext";
 const Layout = styled.div`
   background-color: ${props => (props.darkMode ? "black" : "white")};
   color: ${props => props.darkMode ? "white" : "black"};
+  
 `;
 
 export default props => {

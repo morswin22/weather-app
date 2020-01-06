@@ -5,12 +5,11 @@ import Layout from "./components/Layout/Layout";
 import ListWrapper from "./components/ListWrapper/ListWrapper";
 import DarkModeSwitch from "./components/DarkModeSwitch/DarkModeSwitch";
 
-
 const Root = () => (
     <ContextWrapper>
+        <GlobalStyle />
         <DarkModeSwitch/>
         <Layout>
-            <GlobalStyle />
             <ListWrapper />
         </Layout>
     </ContextWrapper>
