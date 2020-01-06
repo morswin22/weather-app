@@ -1,5 +1,6 @@
-import React from "react";
+import React, {useContext} from "react";
 import styled from "styled-components";
+import { DarkModeContext } from "../../hooks/DarkModeContext";
 
 const Wrapper = styled.div`
   width: 150px;
@@ -26,12 +27,16 @@ const Icon = styled.div`
   }
 `;
 
-const Temp = styled.p`
-  color: ${({night}) => (night ? 'grey' : 'black')};
+const TempDay = styled.p`
+  color: ${({darkMode}) => (darkMode ? 'white' : 'black')};
 
   &:not(:last-child) {
     margin-right: 8px;
   }
+`;
+
+const TempNight = styled.p`
+  color: grey;
 `;
 
 const TempWrapper = styled.div`
@@ -39,17 +44,21 @@ const TempWrapper = styled.div`
   flex-direction: row;
 `;
 
-const ListItem = ({day, weather, tempDay, tempNight}) => (
-    <Wrapper>
-        <Day>{day}</Day>
-        <Icon>
-            <img src={weather} alt={'weather'} />
-        </Icon>
-        <TempWrapper>
-            <Temp>{tempDay}&#176;</Temp>
-            <Temp night>{tempNight}&#176;</Temp>
-        </TempWrapper>
-    </Wrapper>
-);
+const ListItem = ({day, weather, tempDay, tempNight}) => {
+    const { darkMode } = useContext(DarkModeContext);
+
+    return (
+        <Wrapper>
+            <Day>{day}</Day>
+            <Icon>
+                <img src={weather} alt={'weather'}/>
+            </Icon>
+            <TempWrapper>
+                <TempDay darkMode={darkMode}>{tempDay}&#176;</TempDay>
+                <TempNight>{tempNight}&#176;</TempNight>
+            </TempWrapper>
+        </Wrapper>
+    )
+};
 
 export default ListItem;
