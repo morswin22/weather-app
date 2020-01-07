@@ -15,6 +15,7 @@ const Wrapper = styled.div`
 
 const API_KEY = '25e7705fa2fad9ccac48355862164f63';
 const weekdays = ['mon','tue','wed','thu','fri','sat','sun'];
+const CITY = 'Poznan';
 
 class ListWrapper extends React.Component {
    state = {
@@ -22,7 +23,7 @@ class ListWrapper extends React.Component {
    };
 
    componentDidMount() { 
-      axios.get('https://api.openweathermap.org/data/2.5/forecast?q=Poznan&units=metric&appid=' + API_KEY)
+      axios.get(`https://api.openweathermap.org/data/2.5/forecast?q=${CITY}&units=metric&appid=${API_KEY}`)
          .then(res => {
             const days = {};
 
@@ -42,32 +43,31 @@ class ListWrapper extends React.Component {
 
                days[day].len++;
             }
-
             const list = [];
             const hours = [1,4,7,10,13,16,19,22];
 
             for (let day in days) {
                const obj = {day: days[day].name};
-               const nextDay = days[parseInt(day)+1];
+               const nextDay = days[parseInt(day) + 1];
 
                if (nextDay && nextDay[1]) {
-                  obj.tempNight = nextDay[1].temp
+                  obj.tempNight = nextDay[1].temp;
                } 
                if (days[day][16]) {
-                  obj.tempDay = days[day][16].temp
-                  obj.weather = days[day][16].weather
+                  obj.tempDay = days[day][16].temp;
+                  obj.weather = days[day][16].weather;
                } else {
-
                   for (let hour of hours) {
                      const data = days[day][hour];
                      if (data) {
-                        obj.weather = days[day][hour].weather
-                        break
+                        obj.weather = days[day][hour].weather;
+                        break;
                      }
                   }
                }
                list.push(obj);
             }
+            list.pop();
             this.setState({weatherData: list});
          });
    };
