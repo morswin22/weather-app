@@ -50,7 +50,7 @@ class ListWrapper extends React.Component {
     render() {
         return (
             <Wrapper>
-                <ListItem day={this.state.day} tempDay={this.state.tempDay} tempNight={this.state.tempNight} weatherIcon={this.state.weatherIcon} />
+                <ListItem {...this.state} />
             </Wrapper>
         )
     }
