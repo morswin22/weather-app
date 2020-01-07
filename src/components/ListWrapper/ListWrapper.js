@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import Constants from "../../utils/Constants";
 import styled from 'styled-components';
 import ListItem from "./ListItem";
 
@@ -13,17 +14,13 @@ const Wrapper = styled.div`
   }
 `;
 
-const API_KEY = '25e7705fa2fad9ccac48355862164f63';
-const weekdays = ['mon','tue','wed','thu','fri','sat','sun'];
-const CITY = 'Poznan';
-
 class ListWrapper extends React.Component {
    state = {
       weatherData: []
    };
 
    componentDidMount() { 
-      axios.get(`https://api.openweathermap.org/data/2.5/forecast?q=${CITY}&units=metric&appid=${API_KEY}`)
+      axios.get(`https://api.openweathermap.org/data/2.5/forecast?q=${Constants.CITY}&units=metric&appid=${Constants.API_KEY}`)
          .then(res => {
             const days = {};
 
@@ -32,7 +29,7 @@ class ListWrapper extends React.Component {
 
                const hour = date.getHours();
                const day = date.getDate();
-               const name = weekdays[date.getDay() - 1];
+               const name = Constants.WEEKDAYS[date.getDay() - 1];
 
                if (!days[day]) days[day] = {name, len: 0};
 
@@ -52,7 +49,8 @@ class ListWrapper extends React.Component {
 
                if (nextDay && nextDay[1]) {
                   obj.tempNight = nextDay[1].temp;
-               } 
+               }
+
                if (days[day][16]) {
                   obj.tempDay = days[day][16].temp;
                   obj.weather = days[day][16].weather;
@@ -65,9 +63,12 @@ class ListWrapper extends React.Component {
                      }
                   }
                }
+
                list.push(obj);
             }
+
             list.pop();
+
             this.setState({weatherData: list});
          });
    };
