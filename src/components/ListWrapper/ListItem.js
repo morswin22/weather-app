@@ -44,18 +44,18 @@ const TempWrapper = styled.div`
   flex-direction: row;
 `;
 
-const ListItem = ({day, weather, tempDay, tempNight}) => {
+const ListItem = ({day, weatherIcon, tempDay, tempNight}) => {
     const { darkMode } = useContext(DarkModeContext);
 
     return (
         <Wrapper>
             <Day>{day}</Day>
             <Icon>
-                <img src={weather} alt={'weather'}/>
+                <img src={weatherIcon} alt={'weather'}/>
             </Icon>
             <TempWrapper>
-                {tempDay ? <TempDay darkMode={darkMode}>{tempDay}&#176;</TempDay> : null}
-                {tempNight ? <TempNight>{tempNight}&#176;</TempNight> : null}
+                <TempDay darkMode={darkMode}>{tempDay}&#176;</TempDay>
+                <TempNight>{tempNight}&#176;</TempNight>
             </TempWrapper>
         </Wrapper>
     )
